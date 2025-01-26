@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic File Management 👌</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>👉Prześlij plik👈</h1>
+    <form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit value=Wyślij>
+    </form>
+    <ul>
+        {% for extension, files in files_by_extension.items() %}
+        <h2>👇👇Pliki z rozszerzeniem {{ extension }}👇👇</h2>
+        <ul>
+            {% for file in files %}
+            <li><a href="{{ url_for('uploaded_file', filename=file) }}">{{ file }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+</body>
+</html>
